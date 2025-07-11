@@ -68,8 +68,8 @@ def generate_song_data(artist_name, tracks):
 
 # === 4. Ana çalıştırma ===
 if __name__ == "__main__":
-    client_id = "9d799a852b3642deb07216f518be6f4b"
-    client_secret = "0a85972e4107440b8db75cbd48cfccd7"
+    client_id = ""
+    client_secret = ""
 
     token = get_spotify_token(client_id, client_secret)
 
