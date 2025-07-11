@@ -77,7 +77,7 @@ def get_lyrics(url):
         f.write(lyrics)
     print("💾 Sözler dosyaya kaydedildi.")"""
 
-GENIUS_API_TOKEN = "uZGAEBO3dDJujREU0qKOH3iNLQJkp7L7-dGv8Q3Vvvlb4DhLYMTXWX3vplJEzqqa"  # Token'ı ekle
+GENIUS_API_TOKEN = ""  # Token'ı ekle
 HEADERS = {"Authorization": f"Bearer {GENIUS_API_TOKEN}"}
 
 def search_song_on_genius(artist, title):
