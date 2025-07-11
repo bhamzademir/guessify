@@ -4,8 +4,8 @@ import json
 import time
 
 # Spotify API bilgileri (BURAYI DOLDUR)
-CLIENT_ID = "9d799a852b3642deb07216f518be6f4b"
-CLIENT_SECRET = "0a85972e4107440b8db75cbd48cfccd7"
+CLIENT_ID = ""
+CLIENT_SECRET = ""
 
 # Erişim token'ı al
 def get_access_token():
