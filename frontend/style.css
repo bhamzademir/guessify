@@ -23,4 +23,12 @@ body {
     margin-top: 20px;
     font-weight: bold;
   }
+
+#scoreboard {
+  margin-top: 30px;
+}
+
+#scoreboard p {
+  margin: 5px 0;
+}
   
