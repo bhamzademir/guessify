@@ -1,4 +1,5 @@
 let currentQuery = ""; // Sunucudan gelen gerçek şarkı adı (gizli tutulacak)
+let playerName = "";
 
 console.log("✅ script.js loaded");
 
@@ -36,17 +37,23 @@ function submitGuess() {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      guess: userGuess,
-      answer: currentQuery
+      player: playerName,
+      guess: userGuess
     })
   })
     .then(res => res.json())
     .then(data => {
       if (data.correct) {
-        resultText.textContent = "✅ Doğru tahmin!";
+        if (data.winner) {
+          resultText.textContent = `✅ Doğru! ${data.winner} kazandı!`;
+          fetchSnippet();
+        } else {
+          resultText.textContent = "✅ Doğru!";
+        }
       } else {
         resultText.textContent = "❌ Yanlış. Tekrar dene!";
       }
+      updateScoreboard(data.scoreboard);
     })
     .catch(err => {
       console.error("❌ Tahmin kontrol hatası:", err);
@@ -54,8 +61,20 @@ function submitGuess() {
     });
 }
 
-// Sayfa yüklendiğinde ilk snippet gelsin
+function updateScoreboard(scores) {
+  const scoresDiv = document.getElementById("scores");
+  scoresDiv.innerHTML = "";
+  for (const player in scores) {
+    const p = document.createElement("p");
+    p.textContent = `${player}: ${scores[player]}`;
+    scoresDiv.appendChild(p);
+  }
+}
+
+// Sayfa yüklendiğinde oyuncu adı istenip snippet gelsin
 window.addEventListener("DOMContentLoaded", () => {
-  console.log("🎶 Sayfa yüklendi, snippet çekiliyor...");
+  playerName = prompt("Adınızı girin:") || `Player-${Math.floor(Math.random()*1000)}`;
+  const infoDiv = document.getElementById("player-info");
+  infoDiv.textContent = `Oyuncu: ${playerName}`;
   fetchSnippet();
 });
